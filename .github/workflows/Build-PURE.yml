@@ -1,0 +1,34 @@
+name: Build PURE
+
+on:
+  workflow_dispatch:
+    inputs:
+      PACKAGE:
+        description: '临时追加到 .config 的插件项，多项用换行分隔'
+        required: false
+        type: string
+      TEST:
+        description: '仅生成配置文件，不编译固件'
+        default: false
+        required: false
+        type: boolean
+
+permissions: write-all
+
+jobs:
+  build:
+    uses: ./.github/workflows/WRT-CORE.yml
+    with:
+      WRT_CONFIG: IPQ60XX-WIFI-YES
+      WRT_THEME: bootstrap
+      WRT_NAME: OWRT
+      WRT_SSID: OWRT
+      WRT_WORD: "12345678"
+      WRT_IP: 192.168.10.1
+      WRT_PW: 无
+      WRT_REPO: https://github.com/ones20250/immortalwrt_ipq.git
+      WRT_BRANCH: main
+      WRT_SOURCE: ones20250/immortalwrt_ipq
+      WRT_PACKAGE: ${{ inputs.PACKAGE }}
+      WRT_PROFILE: PURE
+      WRT_TEST: ${{ inputs.TEST }}
