@@ -234,6 +234,9 @@ jobs:
 
           make defconfig -j$(nproc) && make clean -j$(nproc)
 
+          # 旧 luci.mk 语言包是隐藏默认项，=n 无效。中文已在 unraveloop 的 luci-app-athena-led 内
+          sed -i '/CONFIG_PACKAGE_luci-i18n-athena-led-zh-cn/d' .config
+
       - name: Download Packages
         if: env.WRT_TEST != 'true'
         run: |

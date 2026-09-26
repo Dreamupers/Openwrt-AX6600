@@ -94,6 +94,8 @@ UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
 # 源码树 package/emortal/luci-app-athena-led 与 unraveloop 包名相同，先删掉旧包，=y 才会编到新仓库
 # main 的 Makefile 指向 v2.5.0 预编译包，Release 里没有该文件（404）；v2.4.0 有对应 tar.gz
 rm -rf ./emortal/luci-app-athena-led
+# feeds install 可能已经扫过旧包。不删掉 tmp 里的索引，defconfig 仍会选中已不存在的语言包
+rm -rf ../tmp/info ../tmp/.packageinfo ../tmp/.config-package.in ../tmp/.packagedeps
 UPDATE_PACKAGE "athena-led" "unraveloop/JDC-AX6600-Athena-LED-Controller" "v2.4.0"
 
 #更新软件包版本
