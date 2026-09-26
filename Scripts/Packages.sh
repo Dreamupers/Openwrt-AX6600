@@ -92,8 +92,9 @@ UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
 #UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main"
 #雅典娜的led屏
 # 源码树 package/emortal/luci-app-athena-led 与 unraveloop 包名相同，先删掉旧包，=y 才会编到新仓库
+# main 的 Makefile 指向 v2.5.0 预编译包，Release 里没有该文件（404）；v2.4.0 有对应 tar.gz
 rm -rf ./emortal/luci-app-athena-led
-UPDATE_PACKAGE "athena-led" "unraveloop/JDC-AX6600-Athena-LED-Controller" "main"
+UPDATE_PACKAGE "athena-led" "unraveloop/JDC-AX6600-Athena-LED-Controller" "v2.4.0"
 
 #更新软件包版本
 UPDATE_VERSION() {
