@@ -124,6 +124,8 @@ jobs:
 
           # 在 feeds / defconfig 扫描之前删掉。否则 luci.mk 会生成隐藏的 luci-i18n-athena-led-zh-cn
           rm -rf ./package/emortal/luci-app-athena-led
+          # 设备固件包列表写死了这个语言包，和 .config 无关，必须从设备定义里去掉
+          sed -i 's/ luci-i18n-athena-led-zh-cn//g' ./target/linux/qualcommax/image/ipq60xx.mk
 
           # GitHub Action 移除国内下载源
           PROJECT_MIRRORS_FILE="./scripts/projectsmirrors.json"
@@ -236,9 +238,6 @@ jobs:
           $GITHUB_WORKSPACE/Scripts/Settings.sh
 
           make defconfig -j$(nproc) && make clean -j$(nproc)
-
-          # 旧包已在克隆后删除，这里清掉残留选项，避免 world 去装不存在的语言包
-          sed -i '/CONFIG_PACKAGE_luci-i18n-athena-led-zh-cn/d' .config
 
       - name: Download Packages
         if: env.WRT_TEST != 'true'

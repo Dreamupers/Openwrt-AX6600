@@ -95,7 +95,6 @@ UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
 # main 的 Makefile 指向 v2.5.0 预编译包，Release 里没有该文件（404）；v2.4.0 有对应 tar.gz
 rm -rf ./emortal/luci-app-athena-led
 UPDATE_PACKAGE "athena-led" "unraveloop/JDC-AX6600-Athena-LED-Controller" "v2.4.0"
-rm -rf ../tmp/info ../tmp/.packageinfo ../tmp/.config-package.in ../tmp/.packagedeps
 
 #更新软件包版本
 UPDATE_VERSION() {
