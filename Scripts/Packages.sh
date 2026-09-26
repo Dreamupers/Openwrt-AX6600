@@ -91,6 +91,8 @@ UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
 #UPDATE_PACKAGE "viking" "ones20250/packages" "main" "" "luci-app-timewol luci-app-wolplus"
 #UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main"
 #雅典娜的led屏
+# 源码树 package/emortal/luci-app-athena-led 与 unraveloop 包名相同，先删掉旧包，=y 才会编到新仓库
+rm -rf ./emortal/luci-app-athena-led
 UPDATE_PACKAGE "athena-led" "unraveloop/JDC-AX6600-Athena-LED-Controller" "main"
 
 #更新软件包版本
