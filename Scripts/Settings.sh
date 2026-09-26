@@ -53,6 +53,8 @@ sed -i "s/hostname='.*'/hostname='$WRT_NAME'/g" "$CFG_FILE"
 #配置文件修改
 echo "CONFIG_PACKAGE_luci=y" >> ./.config
 echo "CONFIG_LUCI_LANG_zh_Hans=y" >> ./.config
+# unraveloop 的界面包自带中文 lmo，没有独立语言包；关掉后避免 world 去装不存在的包
+echo "CONFIG_PACKAGE_luci-i18n-athena-led-zh-cn=n" >> ./.config
 #echo "CONFIG_PACKAGE_luci-theme-$WRT_THEME=y" >> ./.config
 #echo "CONFIG_PACKAGE_luci-app-$WRT_THEME-config=y" >> ./.config
 
