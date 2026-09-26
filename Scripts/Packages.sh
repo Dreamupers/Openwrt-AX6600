@@ -91,12 +91,11 @@ UPDATE_PACKAGE "quickfile" "sbwml/luci-app-quickfile" "main"
 #UPDATE_PACKAGE "viking" "ones20250/packages" "main" "" "luci-app-timewol luci-app-wolplus"
 #UPDATE_PACKAGE "vnt" "lmq8267/luci-app-vnt" "main"
 #雅典娜的led屏
-# 源码树 package/emortal/luci-app-athena-led 与 unraveloop 包名相同，先删掉旧包，=y 才会编到新仓库
+# 不用源码树 package/emortal/luci-app-athena-led（luci.mk 会连带生成 luci-i18n-athena-led-zh-cn）
 # main 的 Makefile 指向 v2.5.0 预编译包，Release 里没有该文件（404）；v2.4.0 有对应 tar.gz
 rm -rf ./emortal/luci-app-athena-led
-# feeds install 可能已经扫过旧包。不删掉 tmp 里的索引，defconfig 仍会选中已不存在的语言包
-rm -rf ../tmp/info ../tmp/.packageinfo ../tmp/.config-package.in ../tmp/.packagedeps
 UPDATE_PACKAGE "athena-led" "unraveloop/JDC-AX6600-Athena-LED-Controller" "v2.4.0"
+rm -rf ../tmp/info ../tmp/.packageinfo ../tmp/.config-package.in ../tmp/.packagedeps
 
 #更新软件包版本
 UPDATE_VERSION() {

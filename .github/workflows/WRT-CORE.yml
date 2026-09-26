@@ -122,6 +122,9 @@ jobs:
 
           cd ./wrt/ && echo "WRT_HASH=$(git log -1 --pretty=format:'%h')" >> $GITHUB_ENV
 
+          # 在 feeds / defconfig 扫描之前删掉。否则 luci.mk 会生成隐藏的 luci-i18n-athena-led-zh-cn
+          rm -rf ./package/emortal/luci-app-athena-led
+
           # GitHub Action 移除国内下载源
           PROJECT_MIRRORS_FILE="./scripts/projectsmirrors.json"
           if [ -f "$PROJECT_MIRRORS_FILE" ]; then
@@ -234,7 +237,7 @@ jobs:
 
           make defconfig -j$(nproc) && make clean -j$(nproc)
 
-          # 旧 luci.mk 语言包是隐藏默认项，=n 无效。中文已在 unraveloop 的 luci-app-athena-led 内
+          # 旧包已在克隆后删除，这里清掉残留选项，避免 world 去装不存在的语言包
           sed -i '/CONFIG_PACKAGE_luci-i18n-athena-led-zh-cn/d' .config
 
       - name: Download Packages
